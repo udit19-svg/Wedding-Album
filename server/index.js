@@ -65,7 +65,7 @@ app.post("/upload", upload.single("image"), async (req, res) => {
 });
 
 // ✅ Create Album API
-app.post("/create-album", async (req, res) => {
+app.post("/api/create-album", async (req, res) => {
   try {
     const { title, images } = req.body;
 
