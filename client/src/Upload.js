@@ -63,7 +63,7 @@ function Upload() {
   const createAlbum = async () => {
     try {
       const res = await axios.post(
- `${process.env.REACT_APP_API_URL}/create-album`,
+ `${process.env.REACT_APP_API_URL}/api/create-album`,
   {
     title,
     images: urls
