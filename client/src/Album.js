@@ -10,7 +10,7 @@ function Album() {
 
   useEffect(() => {
     const id = window.location.pathname.split("/")[2];
-    fetch(`http://localhost:5000/album/${id}`)
+    fetch(`${process.env.REACT_APP_API_URL}/album/${id}`)
       .then(res => res.json())
       .then(data => setImages(data.images));
     flipAudio.current.volume = 1;
