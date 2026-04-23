@@ -62,10 +62,13 @@ function Upload() {
   // 🔹 Create Album
   const createAlbum = async () => {
     try {
-      const res = await axios.post("https://wedding-album-s31c.onrender.com/create-album", {
-        title,
-        images: urls
-      });
+      const res = await axios.post(
+  "https://wedding-album-s31c.onrender.com/create-album",
+  {
+    title,
+    images: urls
+  }
+);
 
       setAlbumId(res.data.album._id);
       alert("Album ban gaya 🎉");
