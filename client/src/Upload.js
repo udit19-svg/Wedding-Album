@@ -63,7 +63,7 @@ function Upload() {
   const createAlbum = async () => {
     try {
       const res = await axios.post(
-  "https://wedding-album-s31c.onrender.com",
+  "https://wedding-album-s31c.onrender.com/create-album",
   {
     title,
     images: urls
