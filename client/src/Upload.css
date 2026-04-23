@@ -1,0 +1,375 @@
+/* ==================== BODY BACKGROUND ==================== */
+/* Warm beige/cream like the wedding card background */
+body {
+  background: linear-gradient(180deg, #c0a571 0%, #7f7156 50%, #f5e6c8 100%);
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtle traditional pattern overlay (optional) */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(212, 160, 23, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(139, 26, 43, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ==================== MAIN CONTAINER ==================== */
+/* Ivory paper look like wedding card */
+.wedding-album-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 40px;
+  background: linear-gradient(180deg, #dcd689 0%, #bd890e 100%);
+  border-radius: 8px;
+  box-shadow: 
+    0 5px 30px rgba(61, 31, 0, 0.15),
+    0 0 0 4px #8b1a2b,
+    0 0 0 6px #d4a017,
+    0 0 0 8px #8b1a2b;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Top toran/garland decoration */
+.wedding-album-container::before {
+  /* content: '🌺🌼🌺🌼🌺🌼🌺🌼🌺🌼🌺🌼🌺'; */
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  letter-spacing: 4px;
+  opacity: 0.9;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Bottom toran decoration */
+.wedding-album-container::after {
+  /* content: '🌺🌼🌺🌼🌺🌼🌺🌼🌺🌼🌺🌼🌺'; */
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  letter-spacing: 4px;
+  opacity: 0.9;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Side pillar decorations */
+.wedding-album-container .side-left,
+.wedding-album-container .side-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  opacity: 0.15;
+}
+
+.wedding-album-container .side-left { left: 10px; }
+.wedding-album-container .side-right { right: 10px; }
+
+/* ==================== HEADING ==================== */
+.wedding-title {
+  color: #8b1a2b;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  font-family: 'Georgia', serif;
+}
+
+.wedding-title .ring-emoji {
+  display: inline-block;
+  animation: sparkle 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 5px rgba(212, 160, 23, 0.5));
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.2) rotate(10deg); }
+}
+
+/* ==================== INPUT FIELDS ==================== */
+.wedding-input {
+  width: 80%;
+  padding: 14px 22px;
+  margin: 10px 0;
+  border: 2px solid #d4a017;
+  border-radius: 4px;
+  background: #fffef8;
+  font-size: 1rem;
+  color: #3d1f00;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.wedding-input:focus {
+  border-color: #8b1a2b;
+  box-shadow: 
+    0 0 15px rgba(139, 26, 43, 0.15),
+    inset 0 1px 3px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+.wedding-input::placeholder {
+  color: #a08060;
+  font-style: italic;
+}
+
+/* ==================== FILE INPUT ==================== */
+.wedding-file-input {
+  width: 80%;
+  padding: 15px;
+  margin: 10px 0;
+  border: 2px dashed #d4a017;
+  border-radius: 8px;
+  background: rgba(255, 254, 248, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #6b4423;
+}
+
+.wedding-file-input:hover {
+  border-color: #8b1a2b;
+  background: rgba(255, 254, 248, 1);
+  border-style: solid;
+  box-shadow: 0 0 15px rgba(212, 160, 23, 0.15);
+}
+
+/* ==================== BUTTONS ==================== */
+.wedding-btn {
+  padding: 14px 36px;
+  margin: 12px 8px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.05rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  font-weight: 500;
+}
+
+/* Upload Button - Maroon like bride saree */
+.wedding-btn-upload {
+  background: linear-gradient(180deg, #8b1a2b 0%, #6b1220 100%);
+  color: #fff5e6;
+  box-shadow: 0 4px 15px rgba(139, 26, 43, 0.3);
+  border: 1px solid #a02030;
+}
+
+.wedding-btn-upload:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(139, 26, 43, 0.4);
+  background: linear-gradient(180deg, #9b1a2b 0%, #7b1220 100%);
+}
+
+.wedding-btn-upload:active {
+  transform: translateY(0);
+}
+
+/* Create Album Button - Gold like zari border */
+.wedding-btn-create {
+  background: linear-gradient(180deg, #d4a017 0%, #b8860b 100%);
+  color: #3d1f00;
+  box-shadow: 0 4px 15px rgba(212, 160, 23, 0.3);
+  border: 1px solid #c99520;
+  font-weight: 600;
+}
+
+.wedding-btn-create:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(212, 160, 23, 0.4);
+  background: linear-gradient(180deg, #e0b028 0%, #c89620 100%);
+}
+
+.wedding-btn-create:disabled {
+  background: #c4b5a0;
+  color: #8a7a6a;
+  cursor: not-allowed;
+  opacity: 0.7;
+  box-shadow: none;
+  border-color: #b0a090;
+}
+
+/* ==================== PROGRESS BAR ==================== */
+.wedding-progress-container {
+  width: 80%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.wedding-progress-label {
+  color: #6b4423;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.wedding-progress-track {
+  width: 100%;
+  height: 22px;
+  background: #ede0c8;
+  border-radius: 4px;
+  border: 1px solid #d4a017;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Gold/maroon progress */
+.wedding-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #8b1a2b 0%, #d4a017 50%, #8b1a2b 100%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+  position: relative;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.wedding-progress-text {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* ==================== QR SECTION ==================== */
+.wedding-qr-section {
+  margin-top: 25px;
+  padding: 25px;
+  background: linear-gradient(180deg, #fffef8 0%, #faf6ed 100%);
+  border-radius: 8px;
+  border: 2px solid #d4a017;
+  box-shadow: 
+    0 4px 20px rgba(61, 31, 0, 0.1),
+    0 0 0 2px #8b1a2b;
+}
+
+.wedding-qr-title {
+  color: #8b1a2b;
+  font-size: 1.2rem;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.wedding-qr-wrapper {
+  padding: 18px;
+  background: #fff;
+  border-radius: 8px;
+  display: inline-block;
+  border: 3px solid #d4a017;
+  box-shadow: 0 0 20px rgba(212, 160, 23, 0.15);
+}
+
+/* ==================== DIVIDER ==================== */
+.wedding-divider {
+  width: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4a017, transparent);
+  margin: 22px auto;
+  position: relative;
+}
+
+.wedding-divider::before,
+.wedding-divider::after {
+  content: '✦';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #d4a017;
+  font-size: 14px;
+}
+
+.wedding-divider::before { left: -20px; }
+.wedding-divider::after { right: -20px; }
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes celebrate {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.wedding-success {
+  animation: celebrate 0.5s ease-out;
+}
+
+/* Floating marigold flowers */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.2; }
+  90% { opacity: 0.2; }
+  100% { transform: translateY(-80px) rotate(180deg); opacity: 0; }
+}
+
+.heart-particle {
+  position: fixed;
+  color: #e85d04;
+  font-size: 18px;
+  pointer-events: none;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 640px) {
+  .wedding-album-container {
+    margin: 20px 10px;
+    padding: 50px 20px;
+    box-shadow: 
+      0 3px 20px rgba(61, 31, 0, 0.15),
+      0 0 0 3px #8b1a2b,
+      0 0 0 4px #d4a017,
+      0 0 0 5px #8b1a2b;
+  }
+  
+  .wedding-title {
+    font-size: 1.6rem;
+    margin-top: 25px;
+  }
+  
+  .wedding-input,
+  .wedding-file-input {
+    width: 90%;
+  }
+  
+  .wedding-btn {
+    padding: 12px 28px;
+    font-size: 0.95rem;
+  }
+}

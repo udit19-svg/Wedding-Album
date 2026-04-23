@@ -1,0 +1,390 @@
+ /* =====================================================
+   WEDDING ALBUM - PREMIUM CSS
+   Realistic Wedding Photo Book with 3D Effects
+   ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Great+Vibes&display=swap');
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  --gold-primary: #c9a96e;
+  --gold-light: #e8d5a3;
+  --gold-dark: #a0824a;
+  --cream: #faf7f2;
+  --cream-dark: #f5f0e8;
+  --blush: #f8e8e0;
+  --rose: #d4a5a5;
+  --rose-deep: #b88888;
+  --charcoal: #2c2c2c;
+  --paper-white: #fefefe;
+  --paper-shadow: rgba(0, 0, 0, 0.12);
+  --shadow-soft: rgba(0, 0, 0, 0.08);
+  --shadow-medium: rgba(0, 0, 0, 0.15);
+  --shadow-deep: rgba(0, 0, 0, 0.3);
+}
+
+/* ===== BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  background: var(--cream);
+  overflow-x: hidden;
+}
+
+/* ===== ALBUM CONTAINER ===== */
+.album-container {
+  min-height: 100vh;
+  padding: 30px 15px 50px;
+  background: linear-gradient(135deg, #f5ebe0 0%, #faf3ed 50%, #f0e6d8 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Subtle texture overlay */
+.album-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a96e' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.album-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== ALBUM TITLE ===== */
+.album-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  color: var(--charcoal);
+  text-align: center;
+  margin-bottom: 5px;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Ring emoji styling */
+.album-title + * {
+  margin-top: 0;
+}
+
+/* ===== AUDIO PLAYER ===== */
+.audio-player {
+  width: 280px;
+  max-width: 85%;
+  margin: 15px auto 25px;
+  display: block;
+  border-radius: 50px;
+  background: linear-gradient(145deg, #fff, var(--cream-dark));
+  box-shadow: 
+    0 4px 15px var(--shadow-soft),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  padding: 6px 12px;
+  transition: all 0.3s ease;
+}
+
+.audio-player:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-medium);
+}
+
+/* Webkit audio controls styling */
+audio::-webkit-media-controls-panel {
+  background: transparent !important;
+}
+
+audio::-webkit-media-controls-play-button {
+  background-color: var(--gold-primary) !important;
+  border-radius: 50%;
+}
+
+audio::-webkit-media-controls-timeline {
+  background-color: var(--gold-light);
+  border-radius: 10px;
+  height: 3px;
+}
+
+/* ===== FLIPBOOK CONTAINER ===== */
+.flipbook {
+  margin: 0 auto !important;
+  position: relative;
+  /* 3D book shadow */
+  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.25));
+}
+
+/* Book spine effect in center */
+.flipbook::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, 
+    rgba(0,0,0,0.15) 0%, 
+    rgba(0,0,0,0.08) 20%, 
+    rgba(0,0,0,0.15) 50%, 
+    rgba(0,0,0,0.08) 80%, 
+    rgba(0,0,0,0.15) 100%
+  );
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ===== PAGE STYLING - REALISTIC PHOTO ALBUM ===== */
+.page {
+  background: var(--paper-white) !important;
+  position: relative;
+  overflow: hidden;
+  /* Paper texture effect */
+  background-image: 
+    linear-gradient(90deg, rgba(0,0,0,0.03) 0%, transparent 3%, transparent 97%, rgba(0,0,0,0.03) 100%),
+    linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 20px 20px, 20px 20px !important;
+}
+
+/* Left page shadow (book gutter) */
+.page:nth-child(odd)::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(270deg, rgba(0,0,0,0.12) 0%, transparent 100%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Right page shadow (book gutter) */
+.page:nth-child(even)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.12) 0%, transparent 100%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Page corner fold effect */
+.page::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 25px 25px;
+  border-color: transparent transparent rgba(201, 169, 110, 0.15) transparent;
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* ===== PHOTO FRAME ON EACH PAGE ===== */
+.page img {
+  width: calc(100% - 40px) !important;
+  height: calc(100% - 40px) !important;
+  object-fit: cover;
+  display: block;
+  margin: 20px !important;
+  border: 8px solid white;
+  box-shadow: 
+    0 2px 8px rgba(0,0,0,0.15),
+    0 0 0 1px rgba(0,0,0,0.05);
+  transition: all 0.4s ease;
+}
+
+/* Photo hover effect */
+.page:hover img {
+  transform: scale(1.01);
+  box-shadow: 
+    0 4px 15px rgba(0,0,0,0.2),
+    0 0 0 1px rgba(0,0,0,0.05);
+}
+
+/* ===== PAGE NUMBER ===== */
+.page-number {
+  position: absolute;
+  bottom: 8px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  color: var(--gold-dark);
+  letter-spacing: 2px;
+  z-index: 7;
+}
+
+.page:nth-child(odd) .page-number {
+  right: 15px;
+}
+
+.page:nth-child(even) .page-number {
+  left: 15px;
+}
+
+/* ===== DECORATIVE ELEMENTS ===== */
+/* Gold corner accents on pages */
+.page-corner-accent {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--gold-light);
+  opacity: 0.5;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.top-left { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+.top-right { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+.bottom-left { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+.bottom-right { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+/* ===== FLIP ANIMATION OVERRIDES ===== */
+/* Ensure proper 3D perspective */
+.stf__wrapper {
+  perspective: 1500px !important;
+}
+
+/* Hard page shadow during flip */
+.stf__item--hard {
+  box-shadow: 
+    -8px 0 20px rgba(0, 0, 0, 0.15),
+    inset -3px 0 10px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Soft page shadow */
+.stf__block {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ===== NAVIGATION BUTTONS ===== */
+.flipbook-nav {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.flipbook-nav button {
+  background: linear-gradient(145deg, #fff, var(--cream-dark));
+  border: 2px solid var(--gold-light);
+  color: var(--gold-dark);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 4px 12px var(--shadow-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flipbook-nav button:hover {
+  background: linear-gradient(145deg, var(--gold-light), var(--gold-primary));
+  color: white;
+  border-color: var(--gold-primary);
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(201, 169, 110, 0.3);
+}
+
+.flipbook-nav button:active {
+  transform: translateY(-1px) scale(0.95);
+}
+
+.flipbook-nav button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===== PAGE INDICATOR ===== */
+.page-indicator {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  color: var(--gold-dark);
+  text-align: center;
+  margin-top: 15px;
+  letter-spacing: 2px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .album-container {
+    padding: 20px 10px 30px;
+  }
+
+  .album-title {
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+  }
+
+  .flipbook {
+    max-width: 100% !important;
+  }
+
+  .page img {
+    width: calc(100% - 24px) !important;
+    height: calc(100% - 24px) !important;
+    margin: 12px !important;
+    border-width: 5px;
+  }
+
+  .audio-player {
+    width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .album-title {
+    font-size: 1.6rem;
+  }
+
+  .page img {
+    border-width: 4px;
+    margin: 8px !important;
+    width: calc(100% - 16px) !important;
+    height: calc(100% - 16px) !important;
+  }
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-light);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-primary);
+}
+
+/* ===== SELECTION ===== */
+::selection {
+  background: rgba(201, 169, 110, 0.3);
+  color: var(--charcoal);
+}
