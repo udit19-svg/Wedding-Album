@@ -138,7 +138,7 @@ function Upload() {
         <div className="wedding-qr-section wedding-success">
           <h3 className="wedding-qr-title">Scan QR to view album 📱</h3>
         <div className="wedding-qr-wrapper">
-          <QRCodeCanvas value={`https://albumweds.netlify.app/album/${albumId}`}
+          <QRCodeCanvas value={`https://wedding-album.singerudit19.workers.dev/album/${albumId}`}
            size={200}
             level="H"
             includeMargin={true} />  </div>
