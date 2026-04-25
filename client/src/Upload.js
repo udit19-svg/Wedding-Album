@@ -72,7 +72,7 @@ function Upload() {
 
       setAlbumId(res.data.album._id);
       alert("Album ban gaya 🎉");
-
+  
     } catch (err) {
       console.log("Album Error:", err);
     }
