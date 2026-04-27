@@ -82,7 +82,7 @@ function Upload() {
   return (
     <div   className="wedding-album-container">
       <h2 className="wedding-title">Create Wedding Album 💍</h2>
-     <h2> hello guyes</h2>
+     
       <input
        className="wedding-input"
         type="text"
