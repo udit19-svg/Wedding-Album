@@ -19,7 +19,7 @@ function Album() {
   // ==========================================
   const calculateDimensions = useCallback(() => {
     const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
+    // const screenHeight = window.innerHeight;
     const mobile = screenWidth <= 768;
     setIsMobile(mobile);
 
