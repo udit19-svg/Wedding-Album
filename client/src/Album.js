@@ -1,7 +1,7 @@
  import HTMLFlipBook from "react-pageflip";
 import { useEffect, useState, useRef, useCallback } from "react";
 import flipSound from "./assets/page-flip.mp3";
-// import './Album.css'
+import './Album.css'
 
 function Album() {
   const flipAudio = useRef(new Audio(flipSound));
