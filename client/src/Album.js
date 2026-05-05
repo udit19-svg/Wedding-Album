@@ -5,22 +5,18 @@ import './Album.css'
 
 function Album() {
   const flipAudio = useRef(new Audio(flipSound));
+  const flipBookRef = useRef(null);
   const [images, setImages] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-
-  // FIXED: isMobile state define kiya
   const [isMobile, setIsMobile] = useState(false);
-
-  // FIXED: Dimensions state for responsive sizing
   const [dimensions, setDimensions] = useState({ width: 550, height: 733 });
 
-  // FIXED: Mobile detect karne ka function
+  // Mobile detect + dimensions
   const checkMobile = useCallback(() => {
     const screenWidth = window.innerWidth;
     const mobile = screenWidth <= 768;
     setIsMobile(mobile);
 
-    // Screen size ke hisaab se dimensions set karo
     if (screenWidth <= 360) {
       setDimensions({ width: 320, height: 480 });
     } else if (screenWidth <= 480) {
@@ -34,17 +30,11 @@ function Album() {
     }
   }, []);
 
-  // FIXED: Resize listener add kiya
   useEffect(() => {
-    checkMobile(); // First time check
-
-    const handleResize = () => {
-      checkMobile();
-    };
-
+    checkMobile();
+    const handleResize = () => checkMobile();
     window.addEventListener('resize', handleResize);
     window.addEventListener('orientationchange', checkMobile);
-
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('orientationchange', checkMobile);
@@ -66,6 +56,14 @@ function Album() {
     flipAudio.current.play();
   };
 
+  // Navigation
+  const nextPage = () => {
+    if (flipBookRef.current) flipBookRef.current.pageFlip().flipNext();
+  };
+  const prevPage = () => {
+    if (flipBookRef.current) flipBookRef.current.pageFlip().flipPrev();
+  };
+
   return (
     <div className="album-container">
       <h2 className="album-title">Wedding Album 💍</h2>
@@ -75,6 +73,7 @@ function Album() {
       </audio>
 
       <HTMLFlipBook
+        ref={flipBookRef}
         className="flipbook"
         width={dimensions.width}
         height={dimensions.height}
@@ -89,24 +88,52 @@ function Album() {
         swipeDistance={30}
         usePortrait={isMobile}
         flippingTime={1000}
+        startPage={0}
+        drawShadow={true}
         onFlip={handleFlip}
       >
+        {/* FRONT COVER */}
+        <div className="page page-cover" data-density="hard">
+          <div className="cover-content">
+            <h1>Our Wedding</h1>
+            <p className="cover-icon">💍</p>
+          </div>
+        </div>
+
+        {/* PHOTO PAGES */}
         {images.map((img, i) => (
           <div key={i} className="page">
-            <div className="page-corner-accent top-left"></div>
-            <div className="page-corner-accent top-right"></div>
-            <div className="page-corner-accent bottom-left"></div>
-            <div className="page-corner-accent bottom-right"></div>
-
-            <img src={img} alt={`Wedding moment ${i + 1}`} loading="lazy" />
-
+            <div className="photo-frame">
+              <img 
+                src={img} 
+                alt={`Wedding moment ${i + 1}`} 
+                loading="lazy"
+                onError={(e) => {
+                  e.target.src = '/fallback-image.jpg'; // fallback
+                }}
+              />
+            </div>
             <span className="page-number">{i + 1}</span>
           </div>
         ))}
+
+        {/* BACK COVER */}
+        <div className="page page-cover" data-density="hard">
+          <div className="cover-content">
+            <h1>Forever & Always</h1>
+            <p className="cover-icon">❤️</p>
+          </div>
+        </div>
       </HTMLFlipBook>
 
+      {/* NAVIGATION */}
+      <div className="flipbook-nav">
+        <button onClick={prevPage} disabled={currentPage <= 0}>◀</button>
+        <button onClick={nextPage} disabled={currentPage >= images.length + 1}>▶</button>
+      </div>
+
       <div className="page-indicator">
-        Page {currentPage + 1} of {images.length}
+        Page {currentPage + 1} of {images.length + 2}
       </div>
     </div>
   );
