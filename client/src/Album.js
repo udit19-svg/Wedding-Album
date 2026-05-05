@@ -32,8 +32,9 @@ function Album() {
 
       <HTMLFlipBook
         className="flipbook"
-         width={1100}
-        height={400}
+          width={isMobile ? 300 : 1100}
+        height={isMobile ? 400 : 500}
+        size="stretch"
         onFlip={handleFlip}
         showCover={true}
         maxShadowOpacity={0.5}
