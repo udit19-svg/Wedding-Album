@@ -1,654 +1,266 @@
- @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Great+Vibes&display=swap');
+ /* =========================================
+   WEDDING ALBUM PREMIUM CSS
+   Mobile + Laptop Responsive
+========================================= */
 
-/* ===== CSS VARIABLES ===== */
-:root {
-  --gold-primary: #c9a96e;
-  --gold-light: #e8d5a3;
-  --gold-dark: #a0824a;
-  --cream: #faf7f2;
-  --cream-dark: #f5f0e8;
-  --blush: #f8e8e0;
-  --rose: #d4a5a5;
-  --rose-deep: #b88888;
-  --charcoal: #2c2c2c;
-  --paper-white: #fefefe;
-  --paper-shadow: rgba(0, 0, 0, 0.12);
-  --shadow-soft: rgba(0, 0, 0, 0.08);
-  --shadow-medium: rgba(0, 0, 0, 0.15);
-  --shadow-deep: rgba(0, 0, 0, 0.3);
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap');
 
-  /* Responsive sizing variables */
-  --page-margin: 20px;
-  --photo-border: 8px;
-  --corner-size: 30px;
-  --nav-gap: 25px;
-  --nav-btn-size: 45px;
+:root{
+  --gold: #d4af37;
+  --rose: #f7e7e7;
+  --cream: #fffaf5;
+  --dark: #3d2c2c;
+  --shadow: rgba(0,0,0,0.15);
 }
 
-/* ===== BASE ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ===== BODY ===== */
+
+body{
+  margin:0;
+  padding:0;
+  font-family:'Poppins', sans-serif;
+  background: linear-gradient(
+    135deg,
+    #fff5f5,
+    #fffaf0,
+    #fdf3e7
+  );
+  overflow-x:hidden;
 }
 
-html {
-  font-size: 16px;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  touch-action: manipulation;
+/* ===== MAIN CONTAINER ===== */
+
+.album-container{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  padding:20px;
+  position:relative;
 }
 
-body {
-  font-family: 'Cormorant Garamond', serif;
-  background: var(--cream);
-  overflow-x: hidden;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  width: 100%;
-  max-width: 100vw;
-}
+/* ===== WEDDING TITLE ===== */
 
-/* ===== ALBUM CONTAINER ===== */
-.album-container {
-  min-height: 100vh;
-  padding: clamp(15px, 3vw, 30px) clamp(8px, 2vw, 15px) clamp(30px, 5vw, 50px);
-  background: linear-gradient(135deg, #f5ebe0 0%, #faf3ed 50%, #f0e6d8 100%);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-/* Subtle texture overlay */
-.album-container::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a96e' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  opacity: 0.5;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.album-container > * {
-  position: relative;
-  z-index: 1;
-  max-width: 100%;
-}
-
-/* ===== ALBUM TITLE ===== */
-.album-title {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  color: var(--charcoal);
-  text-align: center;
-  margin-bottom: 5px;
-  letter-spacing: clamp(1px, 0.5vw, 3px);
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-  line-height: 1.2;
-  padding: 0 10px;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  width: 100%;
-}
-
-/* Ring emoji styling */
-.album-title + * {
-  margin-top: 0;
+.album-title{
+  font-family:'Great Vibes', cursive;
+  font-size:4rem;
+  color:var(--dark);
+  margin-top:10px;
+  margin-bottom:15px;
+  text-align:center;
+  text-shadow:2px 2px 8px rgba(0,0,0,0.1);
 }
 
 /* ===== AUDIO PLAYER ===== */
-.audio-player {
-  width: min(280px, 90vw);
-  margin: clamp(10px, 2vw, 15px) auto clamp(15px, 3vw, 25px);
-  display: block;
-  border-radius: 50px;
-  background: linear-gradient(145deg, #fff, var(--cream-dark));
-  box-shadow: 
-    0 4px 15px var(--shadow-soft),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(201, 169, 110, 0.25);
-  padding: 6px 12px;
-  transition: all 0.3s ease;
-  max-width: 100%;
+
+.audio-player{
+  margin-bottom:25px;
+  width:280px;
+  max-width:90%;
+  border-radius:50px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
-.audio-player:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--shadow-medium);
+/* ===== FLIPBOOK ===== */
+
+.flipbook{
+  box-shadow:
+    0 15px 35px rgba(0,0,0,0.2),
+    0 5px 15px rgba(0,0,0,0.1);
+  border-radius:15px;
 }
 
-/* Webkit audio controls styling */
-audio::-webkit-media-controls-panel {
-  background: transparent !important;
+/* ===== PAGE ===== */
+
+.page{
+  background:
+    linear-gradient(
+      145deg,
+      #fffdf9,
+      #fff7f0
+    );
+  overflow:hidden;
+  position:relative;
+  border:1px solid rgba(212,175,55,0.2);
 }
 
-audio::-webkit-media-controls-play-button {
-  background-color: var(--gold-primary) !important;
-  border-radius: 50%;
+/* ===== IMAGE ===== */
+
+.page img{
+  width:92%;
+  height:92%;
+  object-fit:cover;
+  margin:4%;
+  border-radius:10px;
+  border:6px solid white;
+
+  box-shadow:
+    0 8px 18px rgba(0,0,0,0.15);
+
+  transition:0.4s ease;
 }
 
-audio::-webkit-media-controls-timeline {
-  background-color: var(--gold-light);
-  border-radius: 10px;
-  height: 3px;
-}
-
-/* ===== FLIPBOOK CONTAINER ===== */
-.flipbook {
-  margin: 0 auto !important;
-  position: relative;
-  /* 3D book shadow */
-  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.25));
-  width: 100% !important;
-  max-width: 100% !important;
-  transform-origin: center center;
-}
-
-/* Book spine effect in center */
-.flipbook::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(2px, 0.5vw, 4px);
-  height: 100%;
-  background: linear-gradient(180deg, 
-    rgba(0,0,0,0.15) 0%, 
-    rgba(0,0,0,0.08) 20%, 
-    rgba(0,0,0,0.15) 50%, 
-    rgba(0,0,0,0.08) 80%, 
-    rgba(0,0,0,0.15) 100%
-  );
-  z-index: 10;
-  pointer-events: none;
-}
-
-/* ===== PAGE STYLING - REALISTIC PHOTO ALBUM ===== */
-.page {
-  background: var(--paper-white) !important;
-  position: relative;
-  overflow: hidden;
-  /* Paper texture effect */
-  background-image: 
-    linear-gradient(90deg, rgba(0,0,0,0.03) 0%, transparent 3%, transparent 97%, rgba(0,0,0,0.03) 100%),
-    linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px) !important;
-  background-size: 100% 100%, 20px 20px, 20px 20px !important;
-}
-
-/* Left page shadow (book gutter) */
-.page:nth-child(odd)::before {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: clamp(20px, 4vw, 40px);
-  background: linear-gradient(270deg, rgba(0,0,0,0.12) 0%, transparent 100%);
-  z-index: 5;
-  pointer-events: none;
-}
-
-/* Right page shadow (book gutter) */
-.page:nth-child(even)::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: clamp(20px, 4vw, 40px);
-  background: linear-gradient(90deg, rgba(0,0,0,0.12) 0%, transparent 100%);
-  z-index: 5;
-  pointer-events: none;
-}
-
-/* Page corner fold effect */
-.page::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 0 clamp(15px, 3vw, 25px) clamp(15px, 3vw, 25px);
-  border-color: transparent transparent rgba(201, 169, 110, 0.15) transparent;
-  z-index: 6;
-  pointer-events: none;
-}
-
-/* ===== PHOTO FRAME ON EACH PAGE ===== */
-.page img {
-  width: calc(100% - var(--page-margin) * 2) !important;
-  height: calc(100% - var(--page-margin) * 2) !important;
-  object-fit: cover;
-  display: block;
-  margin: var(--page-margin) !important;
-  border: var(--photo-border) solid white;
-  box-shadow: 
-    0 2px 8px rgba(0,0,0,0.15),
-    0 0 0 1px rgba(0,0,0,0.05);
-  transition: all 0.4s ease;
-  max-width: 100%;
-}
-
-/* Photo hover effect - disabled on touch devices */
-@media (hover: hover) and (pointer: fine) {
-  .page:hover img {
-    transform: scale(1.01);
-    box-shadow: 
-      0 4px 15px rgba(0,0,0,0.2),
-      0 0 0 1px rgba(0,0,0,0.05);
-  }
+.page img:hover{
+  transform:scale(1.02);
 }
 
 /* ===== PAGE NUMBER ===== */
-.page-number {
-  position: absolute;
-  bottom: clamp(5px, 1.5vw, 8px);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(0.7rem, 1.8vw, 0.85rem);
-  color: var(--gold-dark);
-  letter-spacing: 2px;
-  z-index: 7;
-}
 
-.page:nth-child(odd) .page-number {
-  right: clamp(8px, 2vw, 15px);
-}
-
-.page:nth-child(even) .page-number {
-  left: clamp(8px, 2vw, 15px);
-}
-
-/* ===== DECORATIVE ELEMENTS ===== */
-/* Gold corner accents on pages */
-.page-corner-accent {
-  position: absolute;
-  width: var(--corner-size);
-  height: var(--corner-size);
-  border: 2px solid var(--gold-light);
-  opacity: 0.5;
-  z-index: 6;
-  pointer-events: none;
-}
-
-.top-left { top: 12px; left: 12px; border-right: none; border-bottom: none; }
-.top-right { top: 12px; right: 12px; border-left: none; border-bottom: none; }
-.bottom-left { bottom: 12px; left: 12px; border-right: none; border-top: none; }
-.bottom-right { bottom: 12px; right: 12px; border-left: none; border-top: none; }
-
-/* ===== FLIP ANIMATION OVERRIDES ===== */
-/* Ensure proper 3D perspective */
-.stf__wrapper {
-  perspective: 1500px !important;
-}
-
-/* Hard page shadow during flip */
-.stf__item--hard {
-  box-shadow: 
-    -8px 0 20px rgba(0, 0, 0, 0.15),
-    inset -3px 0 10px rgba(0, 0, 0, 0.08) !important;
-}
-
-/* Soft page shadow */
-.stf__block {
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
-}
-
-/* ===== NAVIGATION BUTTONS ===== */
-.flipbook-nav {
-  display: flex;
-  justify-content: center;
-  gap: var(--nav-gap);
-  margin-top: clamp(15px, 3vw, 30px);
-  flex-wrap: wrap;
-  padding: 0 10px;
-}
-
-.flipbook-nav button {
-  background: linear-gradient(145deg, #fff, var(--cream-dark));
-  border: 2px solid var(--gold-light);
-  color: var(--gold-dark);
-  width: var(--nav-btn-size);
-  height: var(--nav-btn-size);
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  box-shadow: 0 4px 12px var(--shadow-soft);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  flex-shrink: 0;
-}
-
-.flipbook-nav button:hover {
-  background: linear-gradient(145deg, var(--gold-light), var(--gold-primary));
-  color: white;
-  border-color: var(--gold-primary);
-  transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 8px 20px rgba(201, 169, 110, 0.3);
-}
-
-.flipbook-nav button:active {
-  transform: translateY(-1px) scale(0.95);
-}
-
-.flipbook-nav button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  transform: none;
+.page-number{
+  position:absolute;
+  bottom:8px;
+  right:15px;
+  color:var(--gold);
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:1px;
 }
 
 /* ===== PAGE INDICATOR ===== */
-.page-indicator {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(0.85rem, 2.2vw, 1rem);
-  color: var(--gold-dark);
-  text-align: center;
-  margin-top: clamp(10px, 2vw, 15px);
-  letter-spacing: 2px;
-  padding: 0 10px;
+
+.page-indicator{
+  margin-top:20px;
+  color:#7b5e57;
+  font-size:1rem;
+  letter-spacing:1px;
 }
 
-/* =====================================================
-   RESPONSIVE BREAKPOINTS - ZOOM FIX FOCUS
-   ===================================================== */
+/* ===== CORNER DECORATION ===== */
 
-/* Large Tablets & Small Laptops (max-width: 1024px) */
-@media (max-width: 1024px) {
-  :root {
-    --page-margin: 16px;
-    --photo-border: 6px;
-    --corner-size: 25px;
-    --nav-gap: 20px;
-    --nav-btn-size: 42px;
-  }
-
-  .album-title {
-    letter-spacing: 2px;
-  }
+.page-corner-accent{
+  width:25px;
+  height:25px;
+  position:absolute;
+  border-color:var(--gold);
+  opacity:0.5;
 }
 
-/* Tablets (max-width: 768px) */
-@media (max-width: 768px) {
-  :root {
-    --page-margin: 12px;
-    --photo-border: 5px;
-    --corner-size: 20px;
-    --nav-gap: 15px;
-    --nav-btn-size: 40px;
+.top-left{
+  top:10px;
+  left:10px;
+  border-top:2px solid;
+  border-left:2px solid;
+}
+
+.top-right{
+  top:10px;
+  right:10px;
+  border-top:2px solid;
+  border-right:2px solid;
+}
+
+.bottom-left{
+  bottom:10px;
+  left:10px;
+  border-bottom:2px solid;
+  border-left:2px solid;
+}
+
+.bottom-right{
+  bottom:10px;
+  right:10px;
+  border-bottom:2px solid;
+  border-right:2px solid;
+}
+
+/* =========================================
+   TABLET RESPONSIVE
+========================================= */
+
+@media (max-width:768px){
+
+  .album-title{
+    font-size:3rem;
   }
 
-  html {
-    font-size: 16px; /* FIXED: Don't reduce base font size to prevent zoom */
+  .audio-player{
+    width:240px;
   }
 
-  .album-container {
-    padding: 15px 8px 25px;
+  .page img{
+    border:4px solid white;
   }
 
-  .album-title {
-    font-size: clamp(1.8rem, 8vw, 2.5rem);
-    letter-spacing: 1px;
-  }
-
-  .flipbook {
-    max-width: 100% !important;
-    transform: scale(1); /* FIXED: Ensure no unwanted scaling */
-  }
-
-  .page img {
-    margin: var(--page-margin) !important;
-    width: calc(100% - var(--page-margin) * 2) !important;
-    height: calc(100% - var(--page-margin) * 2) !important;
-  }
-
-  .audio-player {
-    width: min(240px, 85vw);
-    padding: 4px 8px;
-  }
-
-  .page-corner-accent {
-    display: none;
+  .page-number{
+    font-size:12px;
   }
 }
 
-/* Large Phones (max-width: 480px) */
-@media (max-width: 480px) {
-  :root {
-    --page-margin: 8px;
-    --photo-border: 4px;
-    --nav-gap: 12px;
-    --nav-btn-size: 38px;
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width:480px){
+
+  .album-container{
+    padding:12px;
   }
 
-  html {
-    font-size: 16px; /* FIXED: Keep 16px to prevent auto-zoom on iOS */
+  .album-title{
+    font-size:2.3rem;
+    margin-bottom:10px;
   }
 
-  .album-container {
-    padding: 12px 5px 20px;
+  .audio-player{
+    width:220px;
   }
 
-  .album-title {
-    font-size: clamp(1.6rem, 9vw, 2rem);
-    letter-spacing: 0.5px;
-    margin-bottom: 3px;
+  .flipbook{
+    max-width:100%;
   }
 
-  .page img {
-    margin: var(--page-margin) !important;
-    width: calc(100% - var(--page-margin) * 2) !important;
-    height: calc(100% - var(--page-margin) * 2) !important;
+  .page img{
+    width:94%;
+    height:94%;
+    margin:3%;
+    border-radius:8px;
+    border:3px solid white;
   }
 
-  .flipbook-nav button {
-    width: 40px;
-    height: 40px;
-    font-size: 0.9rem;
+  .page-corner-accent{
+    width:18px;
+    height:18px;
   }
 
-  .page-number {
-    font-size: 0.7rem;
-    letter-spacing: 1px;
-  }
-
-  .page-indicator {
-    font-size: 0.85rem;
+  .page-indicator{
+    font-size:0.9rem;
+    text-align:center;
   }
 }
 
-/* Small Phones (max-width: 360px) */
-@media (max-width: 360px) {
-  :root {
-    --page-margin: 6px;
-    --photo-border: 3px;
-    --nav-gap: 10px;
-    --nav-btn-size: 36px;
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width:360px){
+
+  .album-title{
+    font-size:2rem;
   }
 
-  html {
-    font-size: 16px; /* FIXED: Never go below 16px */
+  .audio-player{
+    width:190px;
   }
 
-  .album-title {
-    font-size: 1.5rem;
-  }
-
-  .flipbook-nav button {
-    width: 36px;
-    height: 36px;
-    font-size: 0.85rem;
-  }
-
-  .audio-player {
-    width: 200px;
+  .page img{
+    border:2px solid white;
   }
 }
 
-/* =====================================================
-   LANDSCAPE ORIENTATION
-   ===================================================== */
+/* =========================================
+   SCROLLBAR
+========================================= */
 
-@media (max-height: 500px) and (orientation: landscape) {
-  .album-container {
-    padding: 10px 8px 15px;
-  }
-
-  .album-title {
-    font-size: clamp(1.4rem, 4vh, 2rem);
-    margin-bottom: 2px;
-  }
-
-  .audio-player {
-    margin: 8px auto 12px;
-    width: 220px;
-  }
-
-  .flipbook-nav {
-    margin-top: 12px;
-  }
-
-  .flipbook-nav button {
-    width: 38px;
-    height: 38px;
-  }
+::-webkit-scrollbar{
+  width:6px;
 }
 
-/* =====================================================
-   HIGH RESOLUTION / RETINA DISPLAYS
-   ===================================================== */
-
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .page {
-    background-size: 100% 100%, 10px 10px, 10px 10px !important;
-  }
+::-webkit-scrollbar-thumb{
+  background:var(--gold);
+  border-radius:20px;
 }
 
-/* =====================================================
-   TOUCH DEVICE OPTIMIZATIONS
-   ===================================================== */
-
-@media (pointer: coarse) {
-  .flipbook-nav button {
-    min-width: 44px;
-    min-height: 44px;
-  }
-
-  .page img {
-    transition: none;
-  }
-
-  /* Prevent zoom on double tap */
-  .flipbook,
-  .page,
-  .page img {
-    touch-action: pan-y pinch-zoom;
-  }
-}
-
-/* =====================================================
-   REDUCED MOTION (Accessibility)
-   ===================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .page img {
-    transition: none;
-  }
-
-  .flipbook-nav button {
-    transition: none;
-  }
-}
-
-/* =====================================================
-   DARK MODE SUPPORT (Optional)
-   ===================================================== */
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --cream: #1a1a1a;
-    --cream-dark: #2a2a2a;
-    --charcoal: #e0e0e0;
-    --paper-white: #f5f0e8;
-  }
-
-  body {
-    background: #1a1a1a;
-  }
-
-  .album-container {
-    background: linear-gradient(135deg, #2a2520 0%, #1f1b16 50%, #2a2520 100%);
-  }
-}
-
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--cream);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--gold-light);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--gold-primary);
-}
-
-/* Firefox scrollbar */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--gold-light) var(--cream);
-}
-
-/* ===== SELECTION ===== */
-::selection {
-  background: rgba(201, 169, 110, 0.3);
-  color: var(--charcoal);
-}
-
-/* ===== SAFE AREA SUPPORT (Notch phones) ===== */
-@supports (padding: max(0px)) {
-  .album-container {
-    padding-left: max(15px, env(safe-area-inset-left));
-    padding-right: max(15px, env(safe-area-inset-right));
-    padding-bottom: max(30px, env(safe-area-inset-bottom));
-  }
-}
-
-/* ===== ZOOM PREVENTION UTILITIES ===== */
-.no-zoom {
-  touch-action: manipulation;
-  -ms-touch-action: manipulation;
-}
-
-/* Prevent text size adjustment on orientation change */
-@viewport {
-  width: device-width;
-  zoom: 1.0;
+::-webkit-scrollbar-track{
+  background:#fff;
 }
