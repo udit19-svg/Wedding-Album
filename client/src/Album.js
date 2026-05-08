@@ -36,7 +36,9 @@ function Album() {
         height={450}
         onFlip={handleFlip}
         showCover={true}
-        maxShadowOpacity={0.5}
+        maxShadowOpacity={0.5}          
+       mobileScrollSupport={true}
+     useMouseEvents={true}
       >
         {images.map((img, i) => (
           <div key={i} className="page">

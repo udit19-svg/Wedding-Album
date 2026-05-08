@@ -179,32 +179,32 @@ body{
 }
 
 .top-left{
-  top:12px;
-  left:12px;
+  top:2px;
+  left:2px;
 
   border-top:2px solid;
   border-left:2px solid;
 }
 
 .top-right{
-  top:12px;
-  right:12px;
+  top:2px;
+  right:2px;
 
   border-top:2px solid;
   border-right:2px solid;
 }
 
 .bottom-left{
-  bottom:12px;
-  left:12px;
+  bottom:2px;
+  left:2px;
 
   border-bottom:2px solid;
   border-left:2px solid;
 }
 
 .bottom-right{
-  bottom:12px;
-  right:12px;
+  bottom:2px;
+  right:2px;
 
   border-bottom:2px solid;
   border-right:2px solid;
@@ -333,4 +333,27 @@ body{
   .page img{
     border:2px solid #f3d9b1;
   }
+}
+
+/* ===== MOBILE ZOOM FIX ===== */
+
+html,
+body{
+  touch-action:auto;
+  overflow-x:hidden;
+}
+
+/* Flipbook zoom allow */
+.flipbook,
+.page,
+.page img{
+  touch-action:pinch-zoom !important;
+}
+
+/* React pageflip override */
+.stf__parent,
+.stf__wrapper,
+.stf__block{
+  touch-action:pinch-zoom !important;
+  overflow:visible !important;
 }
