@@ -1,30 +1,17 @@
- /* =========================================
-   WEDDING ALBUM PREMIUM CSS
-   Mobile + Laptop Responsive
-========================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap');
-
-:root{
-  --gold: #d4af37;
-  --rose: #f7e7e7;
-  --cream: #fffaf5;
-  --dark: #3d2c2c;
-  --shadow: rgba(0,0,0,0.15);
-}
-
-/* ===== BODY ===== */
+ /* ===== BODY ===== */
 
 body{
   margin:0;
   padding:0;
   font-family:'Poppins', sans-serif;
-  background: linear-gradient(
+  background:
+  linear-gradient(
     135deg,
-    #fff5f5,
-    #fffaf0,
-    #fdf3e7
+    #1f1a17,
+    #2c221d,
+    #3a2d26
   );
+
   overflow-x:hidden;
 }
 
@@ -35,54 +22,58 @@ body{
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:flex-start;
   padding:20px;
-  position:relative;
 }
 
-/* ===== WEDDING TITLE ===== */
+/* ===== TITLE ===== */
 
 .album-title{
   font-family:'Great Vibes', cursive;
-  font-size:4rem;
-  color:var(--dark);
-  margin-top:10px;
-  margin-bottom:15px;
-  text-align:center;
-  text-shadow:2px 2px 8px rgba(0,0,0,0.1);
+  font-size:3.5rem;
+  color:#f3d9b1;
+  margin-bottom:20px;
+  text-shadow:0 3px 10px rgba(0,0,0,0.5);
 }
 
-/* ===== AUDIO PLAYER ===== */
+/* ===== AUDIO ===== */
 
 .audio-player{
-  margin-bottom:25px;
   width:280px;
   max-width:90%;
+  margin-bottom:30px;
+
   border-radius:50px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+  background:#2f241e;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.4);
 }
 
 /* ===== FLIPBOOK ===== */
 
 .flipbook{
   box-shadow:
-    0 15px 35px rgba(0,0,0,0.2),
-    0 5px 15px rgba(0,0,0,0.1);
-  border-radius:15px;
+  0 20px 40px rgba(0,0,0,0.5);
+
+  border-radius:20px;
 }
 
 /* ===== PAGE ===== */
 
 .page{
   background:
-    linear-gradient(
-      145deg,
-      #fffdf9,
-      #fff7f0
-    );
-  overflow:hidden;
+  linear-gradient(
+    145deg,
+    #2d221d,
+    #3a2b24
+  );
+
+  border:1px solid rgba(255,255,255,0.05);
+
   position:relative;
-  border:1px solid rgba(212,175,55,0.2);
+
+  overflow:hidden;
 }
 
 /* ===== IMAGE ===== */
@@ -90,50 +81,64 @@ body{
 .page img{
   width:92%;
   height:92%;
-  object-fit:cover;
+
   margin:4%;
-  border-radius:10px;
-  border:6px solid white;
+
+  object-fit:contain;   /* 🔥 FULL IMAGE SHOW */
+
+  background:#111;
+
+  border-radius:12px;
+
+  border:4px solid #f3d9b1;
 
   box-shadow:
-    0 8px 18px rgba(0,0,0,0.15);
+  0 10px 25px rgba(0,0,0,0.4);
 
-  transition:0.4s ease;
+  transition:0.4s;
 }
 
+/* ===== IMAGE HOVER ===== */
+
 .page img:hover{
-  transform:scale(1.02);
+  transform:scale(1.01);
 }
 
 /* ===== PAGE NUMBER ===== */
 
 .page-number{
   position:absolute;
-  bottom:8px;
+
+  bottom:10px;
   right:15px;
-  color:var(--gold);
+
+  color:#f3d9b1;
+
   font-size:14px;
-  font-weight:600;
-  letter-spacing:1px;
+
+  font-weight:bold;
 }
 
 /* ===== PAGE INDICATOR ===== */
 
 .page-indicator{
   margin-top:20px;
-  color:#7b5e57;
-  font-size:1rem;
+
+  color:#f3d9b1;
+
+  font-size:1.1rem;
+
   letter-spacing:1px;
 }
 
-/* ===== CORNER DECORATION ===== */
+/* ===== CORNERS ===== */
 
 .page-corner-accent{
-  width:25px;
-  height:25px;
+  width:20px;
+  height:20px;
   position:absolute;
-  border-color:var(--gold);
-  opacity:0.5;
+  border-color:#d4af37;
+  opacity:0.6;
 }
 
 .top-left{
@@ -164,103 +169,56 @@ body{
   border-right:2px solid;
 }
 
-/* =========================================
-   TABLET RESPONSIVE
-========================================= */
-
-@media (max-width:768px){
-
-  .album-title{
-    font-size:3rem;
-  }
-
-  .audio-player{
-    width:240px;
-  }
-
-  .page img{
-    border:4px solid white;
-  }
-
-  .page-number{
-    font-size:12px;
-  }
-}
-
-/* =========================================
+/* =================================
    MOBILE RESPONSIVE
-========================================= */
+================================= */
 
-@media (max-width:480px){
-
-  .album-container{
-    padding:12px;
-  }
+@media(max-width:768px){
 
   .album-title{
-    font-size:2.3rem;
-    margin-bottom:10px;
+    font-size:2.4rem;
+    text-align:center;
   }
 
   .audio-player{
     width:220px;
   }
 
-  .flipbook{
-    max-width:100%;
-  }
-
   .page img{
-    width:94%;
-    height:94%;
-    margin:3%;
-    border-radius:8px;
-    border:3px solid white;
-  }
+    width:96%;
+    height:96%;
 
-  .page-corner-accent{
-    width:18px;
-    height:18px;
+    margin:2%;
+
+    object-fit:contain;
   }
 
   .page-indicator{
-    font-size:0.9rem;
-    text-align:center;
+    font-size:0.95rem;
   }
 }
 
-/* =========================================
-   SMALL MOBILE
-========================================= */
+/* ===== SMALL MOBILE ===== */
 
-@media (max-width:360px){
+@media(max-width:480px){
+
+  .album-container{
+    padding:12px;
+  }
 
   .album-title{
     font-size:2rem;
   }
 
-  .audio-player{
-    width:190px;
+  .flipbook{
+    width:100%;
   }
 
   .page img{
-    border:2px solid white;
+    border:3px solid #f3d9b1;
   }
-}
 
-/* =========================================
-   SCROLLBAR
-========================================= */
-
-::-webkit-scrollbar{
-  width:6px;
-}
-
-::-webkit-scrollbar-thumb{
-  background:var(--gold);
-  border-radius:20px;
-}
-
-::-webkit-scrollbar-track{
-  background:#fff;
+  .page-number{
+    font-size:12px;
+  }
 }
