@@ -1,5 +1,5 @@
  import HTMLFlipBook from "react-pageflip";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import flipSound from "./assets/page-flip.mp3";
 import './Album.css'
 
@@ -8,45 +8,123 @@ function Album() {
   const [images, setImages] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
 
-  // ===== ZOOM STATES =====
-  const [zoomImage, setZoomImage] = useState(null);
-  const [zoomCaption, setZoomCaption] = useState("");
+  // Pinch zoom state for each image
+  const [zoomStates, setZoomStates] = useState({});
 
   useEffect(() => {
     const id = window.location.pathname.split("/")[2];
     fetch(`https://wedding-album-s31c.onrender.com/album/${id}`)
       .then(res => res.json())
-      .then(data => setImages(data.images));
+      .then(data => {
+        setImages(data.images);
+        // Initialize zoom states
+        const initialZoom = {};
+        data.images.forEach((_, idx) => {
+          initialZoom[idx] = { scale: 1, translateX: 0, translateY: 0 };
+        });
+        setZoomStates(initialZoom);
+      });
     flipAudio.current.volume = 1;
-  }, []);
-
-  // ===== ESCAPE KEY TO CLOSE ZOOM =====
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') closeZoom();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   const handleFlip = (e) => {
     setCurrentPage(e.data);
     flipAudio.current.currentTime = 0;
     flipAudio.current.play();
+
+    // Reset zoom on page flip
+    setZoomStates(prev => {
+      const newState = { ...prev };
+      Object.keys(newState).forEach(key => {
+        newState[key] = { scale: 1, translateX: 0, translateY: 0 };
+      });
+      return newState;
+    });
   };
 
-  // ===== ZOOM FUNCTIONS - SIRF BAHAR SE ZOOM =====
-  const openZoom = (img, index) => {
-    setZoomImage(img);
-    setZoomCaption(`Wedding Moment ${index + 1}`);
-    document.body.style.overflow = 'hidden';
-  };
+  // ===== PINCH ZOOM LOGIC =====
+  const handleTouchStart = useCallback((e, index) => {
+    if (e.touches.length === 2) {
+      // Two finger touch - start pinch
+      const touch1 = e.touches[0];
+      const touch2 = e.touches[1];
+      const distance = Math.hypot(
+        touch2.clientX - touch1.clientX,
+        touch2.clientY - touch1.clientY
+      );
 
-  const closeZoom = () => {
-    setZoomImage(null);
-    setZoomCaption("");
-    document.body.style.overflow = 'auto';
-  };
+      // Store initial distance
+      e.currentTarget.dataset.initialDistance = distance;
+      e.currentTarget.dataset.initialScale = zoomStates[index]?.scale || 1;
+    }
+  }, [zoomStates]);
+
+  const handleTouchMove = useCallback((e, index) => {
+    if (e.touches.length === 2) {
+      e.preventDefault(); // Prevent page scroll during pinch
+
+      const touch1 = e.touches[0];
+      const touch2 = e.touches[1];
+      const currentDistance = Math.hypot(
+        touch2.clientX - touch1.clientX,
+        touch2.clientY - touch1.clientY
+      );
+
+      const initialDistance = parseFloat(e.currentTarget.dataset.initialDistance) || currentDistance;
+      const initialScale = parseFloat(e.currentTarget.dataset.initialScale) || 1;
+
+      // Calculate new scale
+      const scaleChange = currentDistance / initialDistance;
+      let newScale = initialScale * scaleChange;
+
+      // Limit zoom levels
+      newScale = Math.min(Math.max(newScale, 1), 4); // Min 1x, Max 4x
+
+      setZoomStates(prev => ({
+        ...prev,
+        [index]: {
+          ...prev[index],
+          scale: newScale
+        }
+      }));
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback((e, index) => {
+    // If zoom is very small, reset to 1
+    const currentScale = zoomStates[index]?.scale || 1;
+    if (currentScale < 1.1) {
+      setZoomStates(prev => ({
+        ...prev,
+        [index]: { scale: 1, translateX: 0, translateY: 0 }
+      }));
+    }
+  }, [zoomStates]);
+
+  // Double tap to zoom
+  const lastTapRef = useRef({});
+  const handleDoubleTap = useCallback((e, index) => {
+    const now = Date.now();
+    const lastTap = lastTapRef.current[index] || 0;
+
+    if (now - lastTap < 300) {
+      // Double tap detected
+      e.preventDefault();
+      const currentScale = zoomStates[index]?.scale || 1;
+      const newScale = currentScale > 1.5 ? 1 : 2.5;
+
+      setZoomStates(prev => ({
+        ...prev,
+        [index]: {
+          scale: newScale,
+          translateX: 0,
+          translateY: 0
+        }
+      }));
+    }
+
+    lastTapRef.current[index] = now;
+  }, [zoomStates]);
 
   return (
     <div className="album-container">
@@ -56,16 +134,16 @@ function Album() {
         <source src="/gehra.mp3" type="audio/mpeg" />
       </audio>
 
-      {/* ===== LANDSCAPE FLIPBOOK ===== */}
+      {/* ===== SINGLE PAGE FLIPBOOK ===== */}
       <HTMLFlipBook
         className="flipbook"
-        width={400}
-        height={300}
+        width={350}
+        height={500}
         size="stretch"
-        minWidth={350}
-        maxWidth={600}
-        minHeight={250}
-        maxHeight={450}
+        minWidth={300}
+        maxWidth={500}
+        minHeight={400}
+        maxHeight={600}
         onFlip={handleFlip}
         showCover={true}
         maxShadowOpacity={0.5}          
@@ -77,7 +155,7 @@ function Album() {
         startZIndex={0}
         autoSize={true}
         clickEventForward={false}
-        usePortrait={false}
+        usePortrait={true}
         swipeDistance={30}
         showPageCorners={true}
         disableFlipByClick={false}
@@ -90,18 +168,23 @@ function Album() {
             <div className="page-corner-accent bottom-left"></div>
             <div className="page-corner-accent bottom-right"></div>
 
-            <img src={img} alt={`Wedding moment ${i + 1}`} />
-
-            {/* Zoom icon - bahar se zoom ke liye */}
+            {/* Single image with pinch zoom */}
             <div 
-              className="zoom-icon" 
-              onClick={(e) => {
-                e.stopPropagation();  // Page flip ko rokne ke liye
-                openZoom(img, i);
-              }}
-              title="Click to Zoom"
+              className="image-wrapper"
+              onTouchStart={(e) => handleTouchStart(e, i)}
+              onTouchMove={(e) => handleTouchMove(e, i)}
+              onTouchEnd={(e) => handleTouchEnd(e, i)}
+              onClick={(e) => handleDoubleTap(e, i)}
             >
-              🔍
+              <img 
+                src={img} 
+                alt={`Wedding moment ${i + 1}`} 
+                className="pinch-zoom-img"
+                style={{
+                  transform: `scale(${zoomStates[i]?.scale || 1}) translate(${zoomStates[i]?.translateX || 0}px, ${zoomStates[i]?.translateY || 0}px)`
+                }}
+                draggable={false}
+              />
             </div>
 
             {/* Page number */}
@@ -114,15 +197,6 @@ function Album() {
       <div className="page-indicator">
         Page {currentPage + 1} of {images.length}
       </div>
-
-      {/* ===== ZOOM OVERLAY ===== */}
-      {zoomImage && (
-        <div className="zoom-overlay active" onClick={closeZoom}>
-          <button className="zoom-close" onClick={closeZoom}>✕</button>
-          <img src={zoomImage} alt="Zoomed view" onClick={(e) => e.stopPropagation()} />
-          <div className="zoom-caption">{zoomCaption}</div>
-        </div>
-      )}
     </div>
   );
 }
