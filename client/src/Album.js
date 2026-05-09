@@ -159,10 +159,10 @@ function Album() {
         {images.map((img, i) => (
           <div key={i} className="page">
             {/* Corner accents */}
-            <div className="page-corner-accent top-left"></div>
+            {/* <div className="page-corner-accent top-left"></div>
             <div className="page-corner-accent top-right"></div>
             <div className="page-corner-accent bottom-left"></div>
-            <div className="page-corner-accent bottom-right"></div>
+            <div className="page-corner-accent bottom-right"></div> */}
 
             {/* Single image with pinch zoom - FULL IMAGE NO CUT */}
             <div 
