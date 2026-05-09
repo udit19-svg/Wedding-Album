@@ -1,5 +1,4 @@
- 
-/* Album.css - Wedding Flipbook - NO WRAPPER SPACE + CORNERS STICK TO IMAGE */
+ /* Album.css - Wedding Flipbook - IMAGE FITS EXACTLY NO BLANK SPACE */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&display=swap');
 
@@ -111,13 +110,13 @@
   margin: 0 !important;
 }
 
-/* ===== IMAGE WRAPPER - NO EXTRA SPACE ===== */
-/* Image wrapper me upar niche ka space hata diya */
+/* ===== IMAGE WRAPPER - EXACT FIT ===== */
+/* Image wrapper ki height image ke barabar hogi */
 .image-wrapper {
   width: 100%;
-  height: 100%;
+  height: auto;               /* 👈 Height auto - image ke hisaab se */
   display: flex;
-  align-items: flex-start;    /* 👈 UPAR SE chipak jayega, center nahi */
+  align-items: flex-start;    /* Upar se shuru */
   justify-content: center;    /* Horizontal center */
   overflow: hidden;
   padding: 0;
@@ -125,20 +124,19 @@
   position: relative;
 }
 
-/* ===== ALBUM IMAGE - FULL WIDTH NO CUT ===== */
+/* ===== ALBUM IMAGE - EXACT FIT ===== */
 .album-img {
-  width: 100%;                /* 👈 Full width */
-  height: auto;               /* 👈 Height auto - aspect ratio maintain */
-  max-height: 100%;           /* 👈 Page se bahar nahi jayegi */
-  object-fit: contain;        /* 👈 Full image dikhegi, cut nahi hogi */
-  object-position: top center; /* 👈 Upar se shuru, center horizontally */
+  width: 100%;                /* Full width */
+  height: auto;               /* Height auto - aspect ratio maintain */
+  object-fit: contain;        /* Full image dikhegi */
+  object-position: top center; /* Upar se shuru */
   display: block;
   padding: 0;
   margin: 0;
 }
 
 /* ===== CORNER ACCENTS - IMAGE SE CHIPAK KE ===== */
-/* Corners image ke bilkul edge pe - 0px gap */
+/* Corners image ke bilkul edge pe */
 .page-corner-accent {
   position: absolute;
   width: 30px;
@@ -158,8 +156,8 @@
 
 /* Top-left corner - IMAGE ke bilkul edge pe */
 .page-corner-accent.top-left {
-  top: 0;                     /* 👈 0px gap - bilkul edge pe */
-  left: 0;                    /* 👈 0px gap - bilkul edge pe */
+  top: 0;
+  left: 0;
 }
 .page-corner-accent.top-left::before {
   top: 0;
@@ -174,10 +172,10 @@
   height: 25px;
 }
 
-/* Top-right corner - IMAGE ke bilkul edge pe */
+/* Top-right corner */
 .page-corner-accent.top-right {
-  top: 0;                     /* 👈 0px gap */
-  right: 0;                   /* 👈 0px gap */
+  top: 0;
+  right: 0;
 }
 .page-corner-accent.top-right::before {
   top: 0;
@@ -192,10 +190,10 @@
   height: 25px;
 }
 
-/* Bottom-left corner - IMAGE ke bilkul edge pe */
+/* Bottom-left corner - IMAGE ke bottom edge pe */
 .page-corner-accent.bottom-left {
-  bottom: 0;                  /* 👈 0px gap */
-  left: 0;                    /* 👈 0px gap */
+  bottom: 0;
+  left: 0;
 }
 .page-corner-accent.bottom-left::before {
   bottom: 0;
@@ -210,10 +208,10 @@
   height: 25px;
 }
 
-/* Bottom-right corner - IMAGE ke bilkul edge pe */
+/* Bottom-right corner - IMAGE ke bottom edge pe */
 .page-corner-accent.bottom-right {
-  bottom: 0;                  /* 👈 0px gap */
-  right: 0;                   /* 👈 0px gap */
+  bottom: 0;
+  right: 0;
 }
 .page-corner-accent.bottom-right::before {
   bottom: 0;
