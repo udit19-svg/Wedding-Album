@@ -58,9 +58,9 @@ function Album() {
       >
         {images.map((img, i) => (
           <div key={i} className="page">
-            {/* Single image wrapper - CORNERS INSIDE HERE */}
+            {/* Single image wrapper - NO EXTRA SPACE */}
             <div className="image-wrapper">
-              {/* Corner accents - IMAGE KE JUST UPAR */}
+              {/* Corner accents - IMAGE SE CHIPAK KE */}
               <div className="page-corner-accent top-left"></div>
               <div className="page-corner-accent top-right"></div>
               <div className="page-corner-accent bottom-left"></div>
