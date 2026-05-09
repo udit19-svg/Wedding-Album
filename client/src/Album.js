@@ -42,7 +42,7 @@ function Album() {
     });
   };
 
-  // ===== PINCH ZOOM LOGIC - CENTER ZOOM =====
+  // ===== PINCH ZOOM LOGIC =====
   const handleTouchStart = useCallback((e, index) => {
     if (e.touches.length === 2) {
       const touch1 = e.touches[0];
@@ -81,8 +81,8 @@ function Album() {
         ...prev,
         [index]: {
           scale: newScale,
-          translateX: 0,  // Center zoom - no pan
-          translateY: 0   // Center zoom - no pan
+          translateX: 0,
+          translateY: 0
         }
       }));
     }
@@ -98,7 +98,7 @@ function Album() {
     }
   }, [zoomStates]);
 
-  // Double tap to zoom - CENTER
+  // Double tap to zoom
   const lastTapRef = useRef({});
   const handleDoubleTap = useCallback((e, index) => {
     const now = Date.now();
@@ -113,8 +113,8 @@ function Album() {
         ...prev,
         [index]: {
           scale: newScale,
-          translateX: 0,  // Center zoom
-          translateY: 0   // Center zoom
+          translateX: 0,
+          translateY: 0
         }
       }));
     }
@@ -164,7 +164,7 @@ function Album() {
             <div className="page-corner-accent bottom-left"></div>
             <div className="page-corner-accent bottom-right"></div>
 
-            {/* Single image with pinch zoom - FULL COVER */}
+            {/* Single image with pinch zoom - FULL IMAGE NO CUT */}
             <div 
               className="image-wrapper"
               onTouchStart={(e) => handleTouchStart(e, i)}

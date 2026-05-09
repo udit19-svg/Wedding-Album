@@ -1,5 +1,5 @@
  
-/* Album.css - Elegant Wedding Flipbook - FULL IMAGE NO BLANK SPACE + CENTER ZOOM */
+/* Album.css - Elegant Wedding Flipbook - FULL IMAGE NO CUT */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&display=swap');
 
@@ -102,7 +102,7 @@
   z-index: 1;
 }
 
-/* ===== PAGE STYLES - NO BLANK SPACE ===== */
+/* ===== PAGE STYLES ===== */
 .page {
   background: linear-gradient(135deg, #fffef8 0%, #fff5ee 50%, #fff0f5 100%);
   position: relative;
@@ -112,7 +112,7 @@
   margin: 0 !important;
 }
 
-/* Page inner border (elegant frame) - CHOTA KIYA */
+/* Page inner border */
 .page::before {
   content: '';
   position: absolute;
@@ -227,7 +227,7 @@
   height: 18px;
 }
 
-/* ===== IMAGE WRAPPER - FULL COVER NO BLANK ===== */
+/* ===== IMAGE WRAPPER ===== */
 .image-wrapper {
   width: 100%;
   height: 100%;
@@ -238,17 +238,18 @@
   touch-action: none;
   padding: 0;
   margin: 0;
+  position: relative;
 }
 
-/* ===== PINCH ZOOM IMAGE - FULL COVER ===== */
+/* ===== FULL IMAGE - NO CUT ===== */
 .pinch-zoom-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;           /* cover = poora page bharega, no blank space */
+  object-fit: contain;           /* contain = full image dikhegi, no cut */
   object-position: center;
   display: block;
   transition: transform 0.1s ease-out;
-  transform-origin: center center;  /* Zoom center se hoga */
+  transform-origin: center center;
   touch-action: none;
   -webkit-user-select: none;
   user-select: none;
