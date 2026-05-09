@@ -35,7 +35,7 @@ function Album() {
     flipAudio.current.play();
   };
 
-  // ===== ZOOM FUNCTIONS =====
+  // ===== ZOOM FUNCTIONS - SIRF BAHAR SE ZOOM =====
   const openZoom = (img, index) => {
     setZoomImage(img);
     setZoomCaption(`Wedding Moment ${index + 1}`);
@@ -59,9 +59,9 @@ function Album() {
       {/* ===== LANDSCAPE FLIPBOOK ===== */}
       <HTMLFlipBook
         className="flipbook"
-        width={400}          // Landscape width (bada)
-        height={300}         // Landscape height (chhota)
-        size="stretch"       // Stretch to fill
+        width={400}
+        height={300}
+        size="stretch"
         minWidth={350}
         maxWidth={600}
         minHeight={250}
@@ -77,17 +77,13 @@ function Album() {
         startZIndex={0}
         autoSize={true}
         clickEventForward={false}
-        usePortrait={false}   // Force landscape
+        usePortrait={false}
         swipeDistance={30}
         showPageCorners={true}
         disableFlipByClick={false}
       >
         {images.map((img, i) => (
-          <div 
-            key={i} 
-            className="page"
-            onClick={() => openZoom(img, i)}
-          >
+          <div key={i} className="page">
             {/* Corner accents */}
             <div className="page-corner-accent top-left"></div>
             <div className="page-corner-accent top-right"></div>
@@ -96,8 +92,17 @@ function Album() {
 
             <img src={img} alt={`Wedding moment ${i + 1}`} />
 
-            {/* Zoom hint on hover */}
-            <div className="zoom-hint">🔍 Click to Zoom</div>
+            {/* Zoom icon - bahar se zoom ke liye */}
+            <div 
+              className="zoom-icon" 
+              onClick={(e) => {
+                e.stopPropagation();  // Page flip ko rokne ke liye
+                openZoom(img, i);
+              }}
+              title="Click to Zoom"
+            >
+              🔍
+            </div>
 
             {/* Page number */}
             <span className="page-number">{i + 1}</span>
