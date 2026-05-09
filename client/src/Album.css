@@ -1,5 +1,4 @@
- 
-/* Album.css - Elegant Wedding Flipbook - FULL IMAGE NO CUT */
+ /* Album.css - Elegant Wedding Flipbook - NO ZOOM */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&display=swap');
 
@@ -235,27 +234,21 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  touch-action: none;
   padding: 0;
   margin: 0;
   position: relative;
 }
 
-/* ===== FULL IMAGE - NO CUT ===== */
-.pinch-zoom-img {
+/* ===== ALBUM IMAGE - NO ZOOM ===== */
+.album-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;           /* contain = full image dikhegi, no cut */
+  object-fit: contain;           /* Full image dikhegi, no cut */
   object-position: center;
   display: block;
-  transition: transform 0.1s ease-out;
-  transform-origin: center center;
-  touch-action: none;
-  -webkit-user-select: none;
-  user-select: none;
-  pointer-events: auto;
   padding: 0;
   margin: 0;
+  /* NO transform, NO transition - zoom removed */
 }
 
 /* ===== PAGE NUMBER ===== */
