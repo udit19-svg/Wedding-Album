@@ -42,10 +42,9 @@ function Album() {
     });
   };
 
-  // ===== PINCH ZOOM LOGIC =====
+  // ===== PINCH ZOOM LOGIC - CENTER ZOOM =====
   const handleTouchStart = useCallback((e, index) => {
     if (e.touches.length === 2) {
-      // Two finger touch - start pinch
       const touch1 = e.touches[0];
       const touch2 = e.touches[1];
       const distance = Math.hypot(
@@ -53,7 +52,6 @@ function Album() {
         touch2.clientY - touch1.clientY
       );
 
-      // Store initial distance
       e.currentTarget.dataset.initialDistance = distance;
       e.currentTarget.dataset.initialScale = zoomStates[index]?.scale || 1;
     }
@@ -61,7 +59,7 @@ function Album() {
 
   const handleTouchMove = useCallback((e, index) => {
     if (e.touches.length === 2) {
-      e.preventDefault(); // Prevent page scroll during pinch
+      e.preventDefault();
 
       const touch1 = e.touches[0];
       const touch2 = e.touches[1];
@@ -73,25 +71,24 @@ function Album() {
       const initialDistance = parseFloat(e.currentTarget.dataset.initialDistance) || currentDistance;
       const initialScale = parseFloat(e.currentTarget.dataset.initialScale) || 1;
 
-      // Calculate new scale
       const scaleChange = currentDistance / initialDistance;
       let newScale = initialScale * scaleChange;
 
       // Limit zoom levels
-      newScale = Math.min(Math.max(newScale, 1), 4); // Min 1x, Max 4x
+      newScale = Math.min(Math.max(newScale, 1), 4);
 
       setZoomStates(prev => ({
         ...prev,
         [index]: {
-          ...prev[index],
-          scale: newScale
+          scale: newScale,
+          translateX: 0,  // Center zoom - no pan
+          translateY: 0   // Center zoom - no pan
         }
       }));
     }
   }, []);
 
   const handleTouchEnd = useCallback((e, index) => {
-    // If zoom is very small, reset to 1
     const currentScale = zoomStates[index]?.scale || 1;
     if (currentScale < 1.1) {
       setZoomStates(prev => ({
@@ -101,14 +98,13 @@ function Album() {
     }
   }, [zoomStates]);
 
-  // Double tap to zoom
+  // Double tap to zoom - CENTER
   const lastTapRef = useRef({});
   const handleDoubleTap = useCallback((e, index) => {
     const now = Date.now();
     const lastTap = lastTapRef.current[index] || 0;
 
     if (now - lastTap < 300) {
-      // Double tap detected
       e.preventDefault();
       const currentScale = zoomStates[index]?.scale || 1;
       const newScale = currentScale > 1.5 ? 1 : 2.5;
@@ -117,8 +113,8 @@ function Album() {
         ...prev,
         [index]: {
           scale: newScale,
-          translateX: 0,
-          translateY: 0
+          translateX: 0,  // Center zoom
+          translateY: 0   // Center zoom
         }
       }));
     }
@@ -168,7 +164,7 @@ function Album() {
             <div className="page-corner-accent bottom-left"></div>
             <div className="page-corner-accent bottom-right"></div>
 
-            {/* Single image with pinch zoom */}
+            {/* Single image with pinch zoom - FULL COVER */}
             <div 
               className="image-wrapper"
               onTouchStart={(e) => handleTouchStart(e, i)}
@@ -181,7 +177,8 @@ function Album() {
                 alt={`Wedding moment ${i + 1}`} 
                 className="pinch-zoom-img"
                 style={{
-                  transform: `scale(${zoomStates[i]?.scale || 1}) translate(${zoomStates[i]?.translateX || 0}px, ${zoomStates[i]?.translateY || 0}px)`
+                  transform: `scale(${zoomStates[i]?.scale || 1})`,
+                  transformOrigin: 'center center'
                 }}
                 draggable={false}
               />
