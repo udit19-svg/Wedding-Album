@@ -1,5 +1,5 @@
  
-/* Album.css - Elegant Wedding Flipbook Styles */
+/* Album.css - Elegant Wedding Flipbook Styles - LANDSCAPE MODE */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&display=swap');
 
@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
+  padding: 20px 15px;
   position: relative;
   overflow-x: hidden;
 }
@@ -46,10 +46,10 @@
 /* ===== TITLE ===== */
 .album-title {
   font-family: 'Great Vibes', cursive;
-  font-size: 3.5rem;
+  font-size: 2.8rem;
   color: var(--wedding-deep);
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.3);
   position: relative;
   z-index: 1;
@@ -59,9 +59,9 @@
 .album-title::after {
   content: '❦';
   display: block;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: var(--wedding-gold);
-  margin-top: 5px;
+  margin-top: 3px;
   animation: sparkle 2s ease-in-out infinite;
 }
 
@@ -72,13 +72,13 @@
 
 /* ===== AUDIO PLAYER ===== */
 .audio-player {
-  width: 280px;
-  margin-bottom: 30px;
+  width: 260px;
+  margin-bottom: 20px;
   border-radius: 50px;
   border: 2px solid var(--wedding-gold);
   background: linear-gradient(135deg, var(--wedding-cream), var(--wedding-blush));
   box-shadow: 0 4px 15px var(--wedding-shadow);
-  padding: 5px 15px;
+  padding: 4px 12px;
   outline: none;
   position: relative;
   z-index: 1;
@@ -94,30 +94,31 @@
   background: transparent !important;
 }
 
-/* ===== FLIPBOOK ===== */
+/* ===== FLIPBOOK - LANDSCAPE ===== */
 .flipbook {
-  margin: 20px auto;
+  margin: 15px auto;
   filter: drop-shadow(0 15px 35px rgba(74, 14, 28, 0.25));
   position: relative;
   z-index: 1;
 }
 
-/* ===== PAGE STYLES ===== */
+/* ===== PAGE STYLES - LANDSCAPE ===== */
 .page {
   background: linear-gradient(135deg, #fffef8 0%, #fff5ee 50%, #fff0f5 100%);
   position: relative;
   overflow: hidden;
   box-shadow: inset 0 0 30px rgba(212, 175, 55, 0.1);
+  cursor: zoom-in;
 }
 
 /* Page inner border (elegant frame) */
 .page::before {
   content: '';
   position: absolute;
-  top: 12px;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
   border: 1px solid rgba(212, 175, 55, 0.4);
   pointer-events: none;
   z-index: 2;
@@ -129,7 +130,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 20px;
+  width: 18px;
   height: 100%;
   background: linear-gradient(90deg, rgba(0,0,0,0.08) 0%, transparent 100%);
   pointer-events: none;
@@ -139,8 +140,8 @@
 /* ===== CORNER ACCENTS ===== */
 .page-corner-accent {
   position: absolute;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   z-index: 3;
   pointer-events: none;
 }
@@ -155,74 +156,74 @@
 
 /* Top-left corner */
 .page-corner-accent.top-left {
-  top: 8px;
-  left: 8px;
+  top: 6px;
+  left: 6px;
 }
 .page-corner-accent.top-left::before {
   top: 0;
   left: 0;
-  width: 25px;
+  width: 22px;
   height: 2px;
 }
 .page-corner-accent.top-left::after {
   top: 0;
   left: 0;
   width: 2px;
-  height: 25px;
+  height: 22px;
 }
 
 /* Top-right corner */
 .page-corner-accent.top-right {
-  top: 8px;
-  right: 8px;
+  top: 6px;
+  right: 6px;
 }
 .page-corner-accent.top-right::before {
   top: 0;
   right: 0;
-  width: 25px;
+  width: 22px;
   height: 2px;
 }
 .page-corner-accent.top-right::after {
   top: 0;
   right: 0;
   width: 2px;
-  height: 25px;
+  height: 22px;
 }
 
 /* Bottom-left corner */
 .page-corner-accent.bottom-left {
-  bottom: 8px;
-  left: 8px;
+  bottom: 6px;
+  left: 6px;
 }
 .page-corner-accent.bottom-left::before {
   bottom: 0;
   left: 0;
-  width: 25px;
+  width: 22px;
   height: 2px;
 }
 .page-corner-accent.bottom-left::after {
   bottom: 0;
   left: 0;
   width: 2px;
-  height: 25px;
+  height: 22px;
 }
 
 /* Bottom-right corner */
 .page-corner-accent.bottom-right {
-  bottom: 8px;
-  right: 8px;
+  bottom: 6px;
+  right: 6px;
 }
 .page-corner-accent.bottom-right::before {
   bottom: 0;
   right: 0;
-  width: 25px;
+  width: 22px;
   height: 2px;
 }
 .page-corner-accent.bottom-right::after {
   bottom: 0;
   right: 0;
   width: 2px;
-  height: 25px;
+  height: 22px;
 }
 
 /* ===== IMAGE STYLES ===== */
@@ -238,17 +239,119 @@
   transform: scale(1.02);
 }
 
-/* ===== PAGE NUMBER ===== */
-.page-number {
+/* ===== ZOOM OVERLAY ===== */
+.zoom-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(74, 14, 28, 0.92);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 40px;
+}
+
+.zoom-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.zoom-overlay img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  transform: scale(0.8);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.zoom-overlay.active img {
+  transform: scale(1);
+}
+
+/* Close button */
+.zoom-close {
   position: absolute;
-  bottom: 20px;
+  top: 25px;
+  right: 35px;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid var(--wedding-gold);
+  border-radius: 50%;
+  color: var(--wedding-gold);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.zoom-close:hover {
+  background: var(--wedding-gold);
+  color: var(--wedding-deep);
+  transform: rotate(90deg);
+}
+
+/* Zoom caption */
+.zoom-caption {
+  position: absolute;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--wedding-gold-light);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px 25px;
+  border-radius: 25px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+/* Zoom hint on page */
+.zoom-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(74, 14, 28, 0.7);
+  color: var(--wedding-gold-light);
+  font-family: 'Playfair Display', serif;
   font-size: 0.85rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 4;
+  white-space: nowrap;
+}
+
+.page:hover .zoom-hint {
+  opacity: 1;
+}
+
+/* ===== PAGE NUMBER ===== */
+.page-number {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 0.8rem;
   color: var(--wedding-gold-dark);
   background: rgba(255, 250, 240, 0.85);
-  padding: 4px 14px;
+  padding: 3px 12px;
   border-radius: 20px;
   border: 1px solid rgba(212, 175, 55, 0.3);
   z-index: 3;
@@ -258,12 +361,12 @@
 
 /* ===== PAGE INDICATOR ===== */
 .page-indicator {
-  margin-top: 30px;
+  margin-top: 20px;
   font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--wedding-deep);
   background: linear-gradient(135deg, var(--wedding-cream), var(--wedding-blush));
-  padding: 12px 30px;
+  padding: 10px 25px;
   border-radius: 30px;
   border: 1px solid rgba(212, 175, 55, 0.3);
   box-shadow: 0 4px 15px var(--wedding-shadow);
@@ -277,17 +380,17 @@
   content: '✦';
   color: var(--wedding-gold);
   margin: 0 10px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .album-title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   .flipbook {
-    transform: scale(0.85);
+    transform: scale(0.9);
     transform-origin: center top;
   }
 
@@ -296,23 +399,40 @@
   }
 
   .page-indicator {
-    font-size: 0.95rem;
-    padding: 10px 20px;
+    font-size: 0.9rem;
+    padding: 8px 18px;
+  }
+
+  .zoom-overlay {
+    padding: 20px;
+  }
+
+  .zoom-close {
+    top: 15px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
   }
 }
 
 @media (max-width: 480px) {
   .album-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .flipbook {
-    transform: scale(0.7);
+    transform: scale(0.75);
     transform-origin: center top;
   }
 
   .album-container {
-    padding: 20px 10px;
+    padding: 15px 10px;
+  }
+
+  .zoom-overlay img {
+    max-width: 95vw;
+    max-height: 80vh;
   }
 }
 
@@ -343,8 +463,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 450px;
-  width: 300px;
+  height: 300px;
+  width: 400px;
   font-family: 'Great Vibes', cursive;
   font-size: 1.5rem;
   color: var(--wedding-gold-dark);
